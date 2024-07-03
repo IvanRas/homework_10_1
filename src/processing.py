@@ -1,6 +1,6 @@
-from typing import Any
+from typing import Any, List, Dict
 
-inform_state = [
+operations = [
     {'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'},
     {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'},
     {'id': 594226727, 'state': 'CANCELED', 'date': '2018-09-12T21:27:25.241689'},
@@ -8,13 +8,17 @@ inform_state = [
 ]
 
 
-def filter_by_state(inform_state: list[dict[str]], state='CANCELED') -> Any:
-    """Функция фильтрации по ключу state"""
-    list_state = []
-    for key in inform_state:
+def filter_by_state(operations: list[dict[str]], state='EXECUTED') -> Any:
+    """
+    Функция принимает список словарей и опционально значение для ключа
+    state и возвращает новый список словарей, содержащий только те словари, у которых ключ
+    state соответствует указанному значению.
+    """
+    filtered_operations: list[dict[str]] = []
+    for key in operations:
         if key.get("state") == state:
-            list_state.append(key)
-    return list_state
+            filtered_operations.append(key)
+    return filtered_operations
 
 
 def sort_by_date(list_of_dict: list[dict[str, Any]], reverse: bool = True) -> list[dict[str, Any]]:
@@ -22,10 +26,8 @@ def sort_by_date(list_of_dict: list[dict[str, Any]], reverse: bool = True) -> li
     Функция принимает на вход список словарей и возвращает новый список, в котором исходные
     словари отсортированы по убыванию даты
     """
-    inform_state = sorted(
-        list_of_dict, kay=lambda new_list_of_dict: new_list_of_dict["date"], reverse=reverse
-    )
-    return inform_state
+    operations = sorted( list_of_dict, kay = lambda new_list_of_dict: new_list_of_dict["date"], reverse = True)
+    return operations
 
 
-print(filter_by_state(inform_state))
+print(filter_by_state(operations))
