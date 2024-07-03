@@ -21,12 +21,12 @@ def filter_by_state(operations: list[dict[str]], state='EXECUTED') -> Any:
     return filtered_operations
 
 
-def sort_by_date(list_of_dict: list[dict[str, Any]], reverse: bool = True) -> list[dict[str, Any]]:
+def sort_by_date(operations: list[dict[str, Any]], reverse: bool = True) -> list[dict[str, Any]]:
     """
     Функция принимает на вход список словарей и возвращает новый список, в котором исходные
     словари отсортированы по убыванию даты
     """
-    operations = sorted( list_of_dict, kay = lambda new_list_of_dict: new_list_of_dict["date"], reverse = True)
+    operations = sorted( operations, kay = lambda new_list_of_dict: new_list_of_dict["date"], reverse = True)
     return operations
 
 
