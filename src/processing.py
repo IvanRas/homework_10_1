@@ -17,4 +17,15 @@ def filter_by_state(inform_state: list[dict[str]], state='CANCELED') -> Any:
     return list_state
 
 
+def sort_by_date(list_of_dict: list[dict[str, Any]], reverse: bool = True) -> list[dict[str, Any]]:
+    """
+    Функция принимает на вход список словарей и возвращает новый список, в котором исходные
+    словари отсортированы по убыванию даты
+    """
+    inform_state = sorted(
+        list_of_dict, kay=lambda new_list_of_dict: new_list_of_dict["date"], reverse=reverse
+    )
+    return inform_state
+
+
 print(filter_by_state(inform_state))
