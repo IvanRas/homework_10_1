@@ -17,7 +17,7 @@ def filter_by_state(operations: list[dict[str, Any]], state: str = "EXECUTED") -
     filtered_operations = []
     for key in operations:
         if key.get("state") == state:
-            filtered_operations.append(key)git
+            filtered_operations.append(key)
     return filtered_operations
 
 
