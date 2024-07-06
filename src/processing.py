@@ -8,16 +8,16 @@ operations = [
 ]
 
 
-def filter_by_state(operations: list[dict[str, ]], state="EXECUTED") -> Any:
+def filter_by_state(operations: list[dict[str, Any]], state: str = "EXECUTED") -> list[dict]:
     """
     Функция принимает список словарей и опционально значение для ключа
     state и возвращает новый список словарей, содержащий только те словари, у которых ключ
     state соответствует указанному значению.
     """
-    filtered_operations: list[dict[str, None]] = []
+    filtered_operations = []
     for key in operations:
         if key.get("state") == state:
-            filtered_operations.append(key)
+            filtered_operations.append(key)git
     return filtered_operations
 
 
