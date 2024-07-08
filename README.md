@@ -19,6 +19,31 @@
 ## Структура проекта
 По завершении этого проекта будет добавлен pytest, для запуска тестов и новый функционал
 
+## Тесты проекта: покрытие тестами кода проекта 
+---------- coverage: platform win32, python 3.12.4-final-0 -----------       
+Name Stmts Miss Cover Missing
+--------------------------------------------------------
+src\__init__.py  0      0   100%
+
+src\masks.py  5      0   100%
+
+src\processing.py  12      0   100%
+
+src\widget.py  13      3    77%  18-20
+
+tests\__init__.py  0      0   100%
+
+tests\conftest.py  8      0   100%
+
+tests\test_processing.py       8      0   100%
+tests\test_widget.py           5      0   100%
+
+--------------------------------------------------------
+
+TOTAL                         51      3    94%
+
+
+
 # Инструкция по установке
 [Чтобы скачать репозиторий:](https://github.com/IvanRas/homework_10_1/pull/1)
 
