@@ -21,7 +21,7 @@
 
 ## Тесты проекта: покрытие тестами кода проекта 
 ---------- coverage: platform win32, python 3.12.4-final-0 -----------       
-Name                       Stmts   Miss  Cover   Missing
+Name Stmts Miss Cover Missing
 --------------------------------------------------------
 src\__init__.py  0      0   100%
 
