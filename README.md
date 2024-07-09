@@ -28,19 +28,28 @@
 ---------- coverage: platform win32, python 3.12.4-final-0 -----------       
 
 File	statements	missing	excluded	coverage
+
 src\__init__.py	0	0	0	100%
+
 src\generators.py	10	3	0	70%
+
 src\masks.py	5	0	0	100%
+
 src\processing.py	12	0	0	100%
+
 src\widget.py	13	0	0	100%
+
 tests\__init__.py	0	0	0	100%
+
 tests\conftest.py	8	0	0	100%
+
 tests\test_filter_by_currency.py	14	2	0	86%
+
 tests\test_processing.py	8	0	0	100%
+
 tests\test_widget.py	8	0	0	100%
+
 Total	78	5	0	94%
-
-
 
 # Инструкция по установке
 [Чтобы скачать репозиторий:](https://github.com/IvanRas/homework_10_1/pull/1)
