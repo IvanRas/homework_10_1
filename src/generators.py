@@ -2,6 +2,8 @@ def filter_by_currency(transactions, currency):
     """ФУнкция принимает на вход список со словарем и возвращает id операции"""
     for key in transactions:
         if key["operationAmount"]["currency"]["name"] == currency:
+        # new_list = filtr(key["operationAmount"]["currency"]["name"] == currency ## фильтрация по имени валюты
+            #return [new_list]  ## вывод нового отсортированого списка по имени валюты
             return ["id"]
 
 
