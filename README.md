@@ -15,34 +15,41 @@
 * Функция скрывающая номер карты и счета
 * Функция сортировки по дате
 * Функция фильтрации в операциях по счетам
+* Функция фильтрации по операции с валютой
+* Функция описания операции по счету 
+* Функция фильтрации по операции с польтой
 
 ## Структура проекта
 По завершении этого проекта будет добавлен pytest, для запуска тестов и новый функционал
 
+
+## Функции, которые мы будем использовать в этой версии кода:
 ## Тесты проекта: покрытие тестами кода проекта 
 ---------- coverage: platform win32, python 3.12.4-final-0 -----------       
-Name                       Stmts   Miss  Cover   Missing
---------------------------------------------------------
-src\__init__.py                0      0   100%
 
-src\masks.py                   5      0   100%
+File	statements	missing	excluded	coverage
 
-src\processing.py             12      0   100%
+src\__init__.py	0	0	0	100%
 
-src\widget.py                 13      0   100%
+src\generators.py	10	3	0	70%
 
-tests\__init__.py              0      0   100%
+src\masks.py	5	0	0	100%
 
-tests\conftest.py              8      0   100%
+src\processing.py	12	0	0	100%
 
-tests\test_processing.py       8      0   100%
+src\widget.py	13	0	0	100%
 
-tests\test_widget.py           8      0   100%
+tests\__init__.py	0	0	0	100%
 
---------------------------------------------------------
-TOTAL                         54      0   100%
+tests\conftest.py	8	0	0	100%
 
+tests\test_filter_by_currency.py	14	2	0	86%
 
+tests\test_processing.py	8	0	0	100%
+
+tests\test_widget.py	8	0	0	100%
+
+Total	78	5	0	94%
 
 # Инструкция по установке
 [Чтобы скачать репозиторий:](https://github.com/IvanRas/homework_10_1/pull/1)
