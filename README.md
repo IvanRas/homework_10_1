@@ -27,13 +27,21 @@ Name Stmts Miss Cover Missing
 Name                       Stmts   Miss  Cover   Missing
 --------------------------------------------------------
 src\__init__.py                0      0   100%
+
 src\masks.py                   5      0   100%
+
 src\processing.py             12      0   100%
+
 src\widget.py                 13      0   100%
+
 tests\__init__.py              0      0   100%
+
 tests\conftest.py              8      0   100%
+
 tests\test_processing.py       8      0   100%
+
 tests\test_widget.py           8      0   100%
+
 --------------------------------------------------------
 TOTAL                         54      0   100%
 
