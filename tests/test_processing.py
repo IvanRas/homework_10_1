@@ -1,4 +1,4 @@
-from src.processing import filter_by_state, sort_by_date, operations
+from src.processing import filter_by_state, operations, sort_by_date
 
 
 def test_filter_by_state(test_operations):

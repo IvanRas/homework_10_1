@@ -1,5 +1,6 @@
 import pytest
-from src.generators import filter_by_currency, card_number_generator
+
+from src.generators import card_number_generator, filter_by_currency
 
 
 @pytest.fixture
@@ -108,5 +109,7 @@ def test_transaction_descriptions(transactions):
 
 def test_card_number_generator(start, finish):
     """Тест генератор номеров банковских карт"""
-    number = next(card_number_generator(start, finish))
-    assert number == "0000 0000 0000 0001"
+    number = card_number_generator(1, 3)
+    assert next(number) == "0000 0000 0000 0001"
+    assert next(number) == "0000 0000 0000 0002"
+    assert next(number) == "0000 0000 0000 0003"
