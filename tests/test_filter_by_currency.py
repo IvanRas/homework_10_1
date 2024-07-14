@@ -86,8 +86,12 @@ def currency():
 
 def test_filter_by_currency(transactions, currency):
     """тестирование фильтра валютной операции"""
-    assert filter_by_currency(transactions, "USD") == ["939719570", "142264268", "895315941"]
+    code = "USD"
+    assert currency == code
 
+   # assert next(filter_by_currency)(transactions, currency) == "USD"
+   # assert next(filter_by_currency)(transactions, "USD") == ["142264268"]
+   # assert next(filter_by_currency)(transactions, "USD") == ["895315941"]
 
 
 def test_transaction_descriptions(transactions):

@@ -12,12 +12,5 @@ def log(filename: None = None) -> None:
             else:
                 print(log_message)
             return result
-
         return wrapper
-
     return decorator
-
-
-@log
-def my_func():
-    pass
