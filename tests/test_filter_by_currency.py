@@ -89,6 +89,7 @@ def test_filter_by_currency(transactions, currency):
     assert filter_by_currency(transactions, "USD") == ["939719570", "142264268", "895315941"]
 
 
+
 def test_transaction_descriptions(transactions):
     """тестирование функции описания"""
     transactions = [
