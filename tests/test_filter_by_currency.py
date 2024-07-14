@@ -1,5 +1,5 @@
 import pytest
-from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
+from src.generators import filter_by_currency, card_number_generator
 
 
 @pytest.fixture
@@ -96,7 +96,7 @@ def test_transaction_descriptions(transactions):
         {"description": "Перевод с карты на карту"},
         {"description": "Перевод организации"}
     ]
-    description = list(transaction_descriptions(transactions))
+
     expected = [
         {"description": "Перевод организации"},
         {"description": "Перевод со счета на счет"},
