@@ -2,3 +2,13 @@ Function test_func_with_file called with () and {}. Result: test
 Function test_func_with_file called with () and {}. Result: test
 Function test_func_with_file called with () and {}. Result: test
 Function test_func_with_file called with () and {}. Result: test
+Function test_func_with_file called with () and {}. Result: test
+Function test_func_with_file called with () and {}. Result: test
+Function test_func_with_file called with () and {}. Result: test
+Function test_func_with_file called with () and {}. Result: test
+Function test_func_with_file called with () and {}. Result: test
+Function test_func_with_file called with () and {}. Result: test
+Function test_func_with_file called with () and {}. Result: test
+Function test_func_with_file called with () and {}. Result: test
+Function test_func_with_file called with () and {}. Result: test
+Function test_func_with_file called with () and {}. Result: test
