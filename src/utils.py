@@ -1,8 +1,7 @@
 import json
 
 
-def get_transactions_dictionary(path: str) -> dict or list:
-# def get_transactions_dictionary(path: str) -> list:
+def get_transactions_dictionary(path: str) -> dict:
     """Принимает путь до JSON-файла и возвращает список словарей с данными о финансовых транзакциях."""
     try:
         # with open(path, "r", "operations.json", encoding='utf-8') as operations:
