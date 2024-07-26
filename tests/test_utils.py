@@ -13,6 +13,7 @@ def get_wrong_path(): return 'nothing'
 @pytest.fixture
 def get_bad_file():
     return '../data/wrong_operations.json'
+
 def test_get_transactions_dictionary(get_path):
     assert get_transactions_dictionary(get_path)[1] == {
         "id": 441945886,
