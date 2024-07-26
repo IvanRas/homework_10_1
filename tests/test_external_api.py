@@ -1,10 +1,19 @@
 import pytest
+import os
 
+from unittest.mock import patch
 from src.external_api import convert_from_i_to_rub
+
+from dotenv import load_dotenv
+
+load_dotenv()
+api_key = os.getenv("API_KEY")
+
 
 @pytest.fixture
 def get_rub_transaction():
     return 123.45
+
 
 @pytest.fixture
 def get_usd_transaction():
@@ -60,5 +69,9 @@ def test_convert_from_not_to_rub(get_usd_transaction):
     assert convert_from_i_to_rub(transaction_r) == "Неизвесная волюта"
 
 
-def test_convert_from_not_rub_to_rub(get_usd_transaction):
-    assert convert_from_i_to_rub(transaction_usr) == 174.62
+@patch('requests.get')
+# @patch('convert_from_i_to_rub')
+def test_convert_from_not_rub_to_rub(mock_get):
+    mock_get.return_value.json.return_value = 174.62
+    assert convert_from_i_to_rub( "USD", 2.0) == 174.62
+    mock_get.assert_called_once_with("https://api.apilayer.com/exchangerates_data/convert?to=RUB&from=USD&amount=2.0")
