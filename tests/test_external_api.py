@@ -12,7 +12,7 @@ api_key = os.getenv("API_KEY")
 
 @pytest.fixture
 def get_rub_transaction():
-    return 123.45
+    return "RUB", 123.45
 
 
 @pytest.fixture
