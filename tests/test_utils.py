@@ -1,4 +1,5 @@
 import pytest
+
 from src.utils import get_transactions_dictionary
 
 
@@ -14,8 +15,9 @@ def get_wrong_path(): return 'nothing'
 def get_bad_file():
     return '../data/wrong_operations.json'
 
+
 def test_get_transactions_dictionary(get_path):
-    assert get_transactions_dictionary(get_path)[1] == {
+    assert get_transactions_dictionary(get_path)[0] == {
         "id": 441945886,
         "state": "EXECUTED",
         "date": "2019-08-26T10:50:58.294041",
