@@ -4,13 +4,11 @@ from src.utils import get_transactions_dictionary
 
 
 @pytest.fixture
-def get_path():
-    return '../data/operations.json'
+def get_path(): return '../data/operations.json'
 
 
 @pytest.fixture
-def get_wrong_path():
-    return 'nothing'
+def get_wrong_path(): return 'nothing'
 
 
 @pytest.fixture
@@ -36,9 +34,9 @@ def test_get_transactions_dictionary(get_path):
     }
 
 
-def test_get_transactions_dictionary(get_wrong_path):
+def test_get_transactions_dictionary_1(get_wrong_path):
     assert get_transactions_dictionary(get_wrong_path) == []
 
 
-def test_get_transactions_dictionary(get_bad_file):
+def test_get_transactions_dictionary_2(get_bad_file):
     assert get_transactions_dictionary(get_bad_file) == []
