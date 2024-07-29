@@ -21,5 +21,6 @@ def convert_from_i_to_rub(transaction: dict[str, float]) -> float | str:
         currency_amount = json_result['result']
         return currency_amount
     else:
+
         return "Неизвесная волюта"
         # говорит о возрощений пипа str, ошибка из за того то не float
