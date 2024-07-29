@@ -19,5 +19,5 @@ def test_func_with_file():
 
 def test_log_to_file():
     test_func_with_file()
-    with open("test_log.txt", 'r') as f:
+    with open("test_log.txt", "r") as f:
         assert "Function test_func_with_file called" in f.read()
