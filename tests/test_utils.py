@@ -1,6 +1,7 @@
 import pytest
 
 from src.utils import get_transactions_dictionary
+from unittest.mock import patch
 
 
 @pytest.fixture
@@ -16,7 +17,15 @@ def get_bad_file():
     return '../data/wrong_operations.json'
 
 
-def test_get_transactions_dictionary(get_path):
+@patch('builtins.open') #подменяем функцию открытия файла
+def test_get_transactions_dictionary(open_mock):
+    open_mock.return_value.__enter__.return_value.read.return_value = ('[{"name": "dict_for_test"}, {"name": '
+                                                                       '"one_more"}]')
+    assert get_transactions_dictionary('any_path_no_matter') == [{"name": "dict_for_test"}, {"name": "one_more"}]
+    open_mock.assert_called_once_with('any_path_no_matter', 'r', encoding='utf-8')
+
+
+def test_get_transactions_dictionary_0(get_path):
     assert get_transactions_dictionary(get_path)[0] == {
         "id": 441945886,
         "state": "EXECUTED",
