@@ -54,7 +54,7 @@ transaction_r = {
     "operationAmount": {
         "amount": 2.0,
         "currency": {
-          "name": "USD.",
+          "name": "USD",
           "code": "r"
         }
     }
@@ -69,9 +69,8 @@ def test_convert_from_not_to_rub(get_usd_transaction):
     assert convert_from_i_to_rub(transaction_r) == "Неизвесная волюта"
 
 
-@patch('requests.get')
-# @patch('convert_from_i_to_rub')
+@patch('requests.request')@patch("src.external_api_key", 'temporary_key')
 def test_convert_from_not_rub_to_rub(mock_get):
-    mock_get.return_value.json.return_value = 174.62
-    assert convert_from_i_to_rub( "USD", 2.0) == 174.62
-    mock_get.assert_called_once_with("https://api.apilayer.com/exchangerates_data/convert?to=RUB&from=USD&amount=2.0")
+    mock_get.return_value.json.return_value = {'result': 174.62}
+    assert convert_from_i_to_rub(transaction_usr) == 174.62
+    mock_get.assert_called_once_with('GET', "https://api.apilayer.com/exchangerates_data/convert?to=RUB&from=USD&amount=2.0", headers={'apikey': 'temporary_key'})
