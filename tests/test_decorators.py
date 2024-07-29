@@ -1,23 +1,24 @@
 from src.decorators import log
 
 
-@log()
-def test_func():
-    return "test"
 
 
 def test_log_to_console(capfd):
-    test_func()
+    @log()
+    def func():
+        return "test"
+    func()
     captured = capfd.readouterr()
-    assert "Function test_func called" in captured.out
+    assert "Function func called" in captured.out
 
 
-@log(filename="test_log.txt")
-def test_func_with_file():
-    return "test"
+
 
 
 def test_log_to_file():
-    test_func_with_file()
+    @log(filename="test_log.txt")
+    def func():
+        return "test"
+    func()
     with open("test_log.txt", 'r') as f:
-        assert "Function test_func_with_file called" in f.read()
+        assert "Function func called" in f.read()

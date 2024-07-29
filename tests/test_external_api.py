@@ -69,7 +69,8 @@ def test_convert_from_not_to_rub(get_usd_transaction):
     assert convert_from_i_to_rub(transaction_r) == "Неизвесная волюта"
 
 
-@patch('requests.request')@patch("src.external_api_key", 'temporary_key')
+@patch('requests.request')
+@patch("src.external_api.api_key", 'temporary_key')
 def test_convert_from_not_rub_to_rub(mock_get):
     mock_get.return_value.json.return_value = {'result': 174.62}
     assert convert_from_i_to_rub(transaction_usr) == 174.62
