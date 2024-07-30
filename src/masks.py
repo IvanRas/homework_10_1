@@ -7,3 +7,4 @@ def get_mask_account(macc_number: str) -> str:
     """Функция маскировки номера счета."""
     mask_account = "**" + macc_number[-4:]
     return mask_account
+

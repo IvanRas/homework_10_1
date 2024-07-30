@@ -16,3 +16,4 @@ def get_transactions_dictionary(path: str) -> dict:
         transactions_data = []
         return transactions_data
         # говорит о возрощений пипа list
+
