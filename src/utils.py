@@ -1,6 +1,7 @@
 import json
 import logging
-
+import csv
+import pandas as pd
 
 logging.basicConfig(
     level=logging.INFO,
@@ -34,3 +35,19 @@ def get_transactions_dictionary(path: str) -> dict:
         auth_logger.info("Файл поврежден")
         return transactions_data
         # говорит о возрощений пипа list
+
+
+def get_transactions_dictionary_excel():
+    """Принимает путь до Excel-файла и возвращает список словарей с данными о финансовых транзакциях."""
+    excel_data = pd.read_excel("transactions_excel.xlsx")
+    auth_logger.info("Информация по счету")
+    reader = csv.reader(excel_data)
+    return reader
+
+
+def get_transactions_dictionary_csv():
+    """Принимает путь до CSV-файла и возвращает список словарей с данными о финансовых транзакциях."""
+    wine_reviews = pd.read_csv("transactions.csv")
+    auth_logger.info("Информация по счету")
+    reader = csv.reader(wine_reviews)
+    return reader
