@@ -18,7 +18,7 @@ def convert_from_i_to_rub(transaction: dict[str, float]) -> float | str:
         headers = {"apikey": api_key}
         response = requests.request("GET", url, headers=headers)
         json_result = response.json()
-        currency_amount = json_result['result']
+        currency_amount = json_result["result"]
         return currency_amount
     else:
         return "Неизвесная волюта"

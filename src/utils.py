@@ -1,7 +1,10 @@
+import csv
 import json
 import logging
-import csv
 import pandas as pd
+
+from typing import Any
+
 
 logging.basicConfig(
     level=logging.INFO,
@@ -10,18 +13,18 @@ logging.basicConfig(
     # filename="utils.log",
     filemode="w",
 )
-auth_logger = logging.getLogger('app.auth')
+auth_logger = logging.getLogger("app.auth")
 # logger = logging.getLogger(__name__)
 # file_handler = logging.FileHandler('utils.log')
 # logger.addHandler(file_handler)
 # logger.setLevel(logging.INFO)
 
 
-def get_transactions_dictionary(path: str) -> dict:
+def get_transactions_dictionary(path: str) -> dict | Any:
     """Принимает путь до JSON-файла и возвращает список словарей с данными о финансовых транзакциях."""
     try:
         # with open(path, "r", "operations.json", encoding='utf-8') as operations:
-        with open(path, "r", encoding='utf-8') as operations:
+        with open(path, "r", encoding="utf-8") as operations:
             try:
                 auth_logger.info("Информация по счету")
                 transactions_data = json.load(operations)
@@ -37,7 +40,7 @@ def get_transactions_dictionary(path: str) -> dict:
         # говорит о возрощений пипа list
 
 
-def get_transactions_dictionary_excel():
+def get_transactions_dictionary_excel() -> dict | Any:
     """Принимает путь до Excel-файла и возвращает список словарей с данными о финансовых транзакциях."""
     excel_data = pd.read_excel("transactions_excel.xlsx")
     auth_logger.info("Информация по счету")
@@ -45,7 +48,7 @@ def get_transactions_dictionary_excel():
     return reader
 
 
-def get_transactions_dictionary_csv():
+def get_transactions_dictionary_csv() -> dict | Any:
     """Принимает путь до CSV-файла и возвращает список словарей с данными о финансовых транзакциях."""
     wine_reviews = pd.read_csv("transactions.csv")
     auth_logger.info("Информация по счету")
