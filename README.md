@@ -18,9 +18,15 @@
 * Функция фильтрации по операции с валютой
 * Функция описания операции по счету 
 * Функция фильтрации по операции с польтой
+* Функция генерации счетов 
+* Функция принятия информацй с помощью JSON-файла
+* Функция принятия информацй с помощью Excel-файла
+* Функция принятия информацй с помощью CSV-файла
+* Функция принятия значение в "USD", "EUR"  обращение через API и возвращение в рублиях
+
 
 ## Структура проекта
-По завершении этого проекта будет добавлен pytest, для запуска тестов и новый функционал
+Добавлина тестирование функций через pytest, для запуска тестов и новый функционал
 
 
 ## Функции, которые мы будем использовать в этой версии кода:
@@ -29,27 +35,43 @@
 
 File	statements	missing	excluded	coverage
 
-src\__init__.py	0	0	0	100%
+src\__init__.py                        0      0   100%
 
-src\generators.py	10	3	0	70%
+src\decorators.py                     13      0   100%
 
-src\masks.py	5	0	0	100%
+src\external_api.py                   18      0   100%
 
-src\processing.py	12	0	0	100%
+src\generators.py                     14      2    86%   13-14
 
-src\widget.py	13	0	0	100%
+src\masks.py                          10      0   100%
 
-tests\__init__.py	0	0	0	100%
+src\processing.py                     12      0   100%
 
-tests\conftest.py	8	0	0	100%
+src\utils.py                          32     12    62%   32-35, 45-48, 53-56
 
-tests\test_filter_by_currency.py	14	2	0	86%
+src\widget.py                         13      0   100%
 
-tests\test_processing.py	8	0	0	100%
+tests\__init__.py                      0      0   100%
 
-tests\test_widget.py	8	0	0	100%
+tests\conftest.py                      8      0   100%
 
-Total	78	5	0	94%
+tests\test_decorators.py              15      0   100%
+
+tests\test_external_api.py            26      0   100%
+
+tests\test_filter_by_currency.py      26      0   100%
+
+tests\test_masks.py                   10      0   100%
+
+tests\test_processing.py               7      0   100%
+
+tests\test_utils.py                   21      1    95%   10
+
+tests\test_widget.py                   8      0   100%
+
+----------------------------------------------------------------
+TOTAL                                233     15    94%
+
 
 # Инструкция по установке
 [Чтобы скачать репозиторий:](https://github.com/IvanRas/homework_10_1/pull/1)
@@ -71,3 +93,18 @@ Total	78	5	0	94%
 ## Источники
 Программа создана при поддержке онлайн-школы [skypro@skyeng.ru](https://sky.pro/#giftpopup) (С надеждои на будущее)
  ![alt текст](https://static.tildacdn.com/tild3364-3965-4237-b664-363533643431/Group_1321317003.svg)
+
+## Особая благодарность преподавателям 
+
+Олег Скляров
+Олег Масллав
+
+## Особая благодарность проверяющим 
+
+Владислав Печеневский
+Алексей Архипов
+Владимир Штефан
+Иван Листратов
+Герман Давыдов
+Артур Калимуллин
+Вадим Вереин
