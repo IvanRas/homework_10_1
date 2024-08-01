@@ -1,4 +1,4 @@
-from typing import Callable, Any
+from typing import Any, Callable
 
 
 def log(filename: None = None) -> Callable[[Any], Callable[[tuple[Any, ...], dict[str, Any]], Any]]:

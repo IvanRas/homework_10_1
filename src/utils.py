@@ -1,10 +1,9 @@
 import csv
 import json
 import logging
-import pandas as pd
-
 from typing import Any
 
+import pandas as pd
 
 logging.basicConfig(
     level=logging.INFO,
@@ -40,17 +39,26 @@ def get_transactions_dictionary(path: str) -> dict | Any:
         # говорит о возрощений пипа list
 
 
-def get_transactions_dictionary_excel() -> dict | Any:
+excel_data = pd.read_excel("transactions_excel.xlsx")
+
+
+def get_transactions_dictionary_excel() -> dict:
     """Принимает путь до Excel-файла и возвращает список словарей с данными о финансовых транзакциях."""
-    excel_data = pd.read_excel("transactions_excel.xlsx")
+
     auth_logger.info("Информация по счету")
     reader = csv.reader(excel_data)
-    return reader
+#    to_dict:  что это за вставка и каки на что она влияет
+    list_trans = reader.to_dict(orient="records")
+    return list_trans
+
+
+wine_reviews = pd.read_csv("transactions.csv")
 
 
 def get_transactions_dictionary_csv() -> dict | Any:
     """Принимает путь до CSV-файла и возвращает список словарей с данными о финансовых транзакциях."""
-    wine_reviews = pd.read_csv("transactions.csv")
     auth_logger.info("Информация по счету")
     reader = csv.reader(wine_reviews)
-    return reader
+#    to_dict:  что это за вставка и каки на что она влияет
+    list_trans = reader.to_dict(orient="records")
+    return list_trans
