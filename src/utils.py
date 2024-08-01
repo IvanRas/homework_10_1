@@ -47,7 +47,7 @@ def get_transactions_dictionary_excel() -> dict:
 
     auth_logger.info("Информация по счету")
     reader = csv.reader(excel_data)
-#    to_dict:  что это за вставка и каки на что она влияет
+#    to_dict:  что это за вставка, и как и на что она влияет
     list_trans = reader.to_dict(orient="records")
     return list_trans
 
@@ -59,6 +59,6 @@ def get_transactions_dictionary_csv() -> dict | Any:
     """Принимает путь до CSV-файла и возвращает список словарей с данными о финансовых транзакциях."""
     auth_logger.info("Информация по счету")
     reader = csv.reader(wine_reviews)
-#    to_dict:  что это за вставка и каки на что она влияет
+#    to_dict:  что это за вставка, и как и на что она влияет
     list_trans = reader.to_dict(orient="records")
     return list_trans
