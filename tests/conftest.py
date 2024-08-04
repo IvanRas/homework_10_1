@@ -5,7 +5,7 @@ from src.processing import operations
 
 @pytest.fixture
 def test_operations():
-    return 'EXECUTED'
+    return "EXECUTED"
 
 
 @pytest.fixture

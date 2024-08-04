@@ -96,14 +96,14 @@ def test_transaction_descriptions(transactions):
         {"description": "Перевод организации"},
         {"description": "Перевод со счета на счет"},
         {"description": "Перевод с карты на карту"},
-        {"description": "Перевод организации"}
+        {"description": "Перевод организации"},
     ]
 
     expected = [
         {"description": "Перевод организации"},
         {"description": "Перевод со счета на счет"},
         {"description": "Перевод с карты на карту"},
-        {"description": "Перевод организации"}
+        {"description": "Перевод организации"},
     ]
     assert transactions == expected
 

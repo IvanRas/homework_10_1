@@ -1,17 +1,20 @@
-def filter_by_currency(transactions, currency):
+from typing import Any
+
+
+def filter_by_currency(transactions: dict, currency: str) -> Any:
     """Функция возвращаtn итератор с операциями в заданной валюте."""
     for transaction in transactions:
         if transaction["operationAmount"]["currency"]["code"] == currency:
             yield transaction
 
 
-def transaction_descriptions(transactions):
+def transaction_descriptions(transactions: dict) -> Any:
     """Функция принимает список словарей и возвращает описание каждой операции по очереди"""
     for transaction in transactions:
         yield transaction.get("descriptions")
 
 
-def card_number_generator(start, finish):
+def card_number_generator(start, finish) -> str:
     """генератор номеров банковских карт"""
     for i in range(start, finish + 1):
         empty_str = "000000000000000"

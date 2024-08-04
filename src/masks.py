@@ -3,11 +3,11 @@ import logging
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s: %(filename)s: %(levelname)s: %(message)s",
-    filename='../logs/masks.log',
+    filename="../logs/masks.log",
     # filename='masks.log',
     filemode="w",
 )
-auth_logger = logging.getLogger('app.auth')
+auth_logger = logging.getLogger("app.auth")
 # logging.basicConfig(
 #     logger = logging.getLogger(__name__)
 #     file_handler = logging.FileHandler('masks.log')

@@ -1,4 +1,7 @@
-def log(filename: None = None) -> None:
+from typing import Any, Callable
+
+
+def log(filename: None = None) -> Callable[[Any], Callable[[tuple[Any, ...], dict[str, Any]], Any]]:
     """Декоратор для логирования вызовов функции."""
 
     def decorator(func):
