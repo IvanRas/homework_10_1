@@ -26,16 +26,16 @@ def get_transactions_dictionary(path: str) -> dict | Any:
         with open(path, "r", encoding="utf-8") as operations:
             try:
                 auth_logger.info("Информация по счету")
-                transactions_data = json.load(operations)
-                return transactions_data
+                list_trans = json.load(operations)
+                return list_trans
             except json.JSONDecodeError:
-                transactions_data = []
+                list_trans = []
                 auth_logger.info("Информация по счету не удачно")
-                return transactions_data
+                return list_trans
     except FileNotFoundError:
-        transactions_data = []
+        list_trans = []
         auth_logger.info("Файл поврежден")
-        return transactions_data
+        return list_trans
         # говорит о возрощений пипа list
 
 

@@ -17,78 +17,85 @@ auth_logger = logging.getLogger("app.auth")
 # выбор типа фаила для чтения
 def maim():
     print("Привет! Добро пожаловать в программу работы с банковскими транзакциями. ")
-    print('''Выберите необходимый пункт меню:
-    1. Получить информацию о транзакциях из JSON-файла
-    2. Получить информацию о транзакциях из CSV-файла
-    3. Получить информацию о транзакциях из XLSX-файла
+    print(f'''Выберите необходимый пункт меню:\n
+    1. Получить информацию о транзакциях из JSON-файла\n
+    2. Получить информацию о транзакциях из CSV-файла\n
+    3. Получить информацию о транзакциях из XLSX-файла\n
     ''')
     i = int(input())
     if i == 1:
         auth_logger.info("Для обработки выбран JSON-файл.")
-        return get_transactions_dictionary
+        return get_transactions_dictionary # возвращает list_trans
     elif i == 2:
         auth_logger.info("Для обработки выбран CSV-файла.")
-        return "Для обработки выбран CSV-файла.", get_transactions_dictionary_csv
+        get_transactions_dictionary_csv()
+        return "Для обработки выбран CSV-файла.",  # возвращает list_trans
     elif i == 3:
         auth_logger.info("Для обработки выбран XLSX-файла.")
-        return get_transactions_dictionary_excel
+        return get_transactions_dictionary_excel # возвращает list_trans
     else:
         auth_logger.info("Не выбран тип файла")
         return maim()
+# должны получить список для работы со следующими функциями
 
 
 # в выбраном типе фаила производится фильрация по столбцу\словврь state
 # выббераем только те где state == filters
-def filter_funct():
+def filter_funct(list_trans: dict) -> dict:
     print("""Введите статус, по которому необходимо выполнить фильтрацию. 
         Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING""")
     filters = str(input()).upper()
-    if filters == "EXECUTED":
-        auth_logger.info("Фильтрация по статусу: EXECUTED")
-        return get_transactions_dictionary
-    elif filters == "CANCELED":
-        auth_logger.info("Фильтрация по статусу: CANCELED")
-        return get_transactions_dictionary_csv
-    elif filters == "PENDING":
-        auth_logger.info("Фильтрация по статусу: PENDING")
-        return get_transactions_dictionary_excel
-    else:
-        auth_logger.info("Не выбран тип фильтрации")
-        return filter_funct()
+    filter_state_list_trans = []
+    # фильтрация
+    for [state] in list_trans:
+        if filters == "EXECUTED":
+            auth_logger.info("Фильтрация по статусу: EXECUTED")
+            filter_state_list_trans.append()
+            return filter_state_list_trans
+        elif filters == "CANCELED":
+            auth_logger.info("Фильтрация по статусу: CANCELED")
+            filter_state_list_trans.append()
+            return filter_state_list_trans
+        elif filters == "PENDING":
+            auth_logger.info("Фильтрация по статусу: PENDING")
+            filter_state_list_trans.append()
+            return filter_state_list_trans
+        else:
+            auth_logger.info("Не выбран тип фильтрации")
+            return filter_funct()
+    return filter_state_list_trans # следующий функция работает с даным списком
 
 
-def funct_sort():
-    sort_data: bool = False
+def funct_sort(filter_state_list_trans: dict) -> dict:
     print("Отсортировать операции по дате? Да/Нет")
     s_data = str(input()).lower()
     if s_data == "да":
-        return sort_data = True
+        print("Отсортировать по возрастанию или по убыванию?")
+        s_upp = str(input()).lower()
+        if s_upp == "по возрастанию":
+            return filter_state_list_trans["data"].sort  # возвращаут список отсортированый по дате возрастания
+        else:
+            return filter_state_list_trans["data"].sort(reverse=True)  # возвращаут список отсортированый по дате убывания
     else:
-        return sort_data
+        return filter_state_list_trans  # возвращает не измененый список
 
 
-def upp_sort():
-    sort_upp: bool = False
-    print("Отсортировать по возрастанию или по убыванию?")
-    s_upp = str(input()).lower()
-    if sort_upp == "по возрастанию":
-        return sort_upp = True
-    else:
-        return sort_upp
-
-
-def rub_sort():
-    sort_r: bool = False
+def rub_sort(filter_state_list_trans: dict) -> dict:
     print("водить только рублевые тразакции? Да/Нет")
     s_rub = str(input()).lower()
-    if sort_r == "да":
-        return sort_r = True
-        # ["operationAmount"]["currency"]["code"] == "RUB"
+    filter_state_list_trans_ = []
+    if s_rub == "да":
+        for [currency_code] in filter_state_list_trans:
+            if [currency_code] == "RUB":
+                filter_state_list_trans_rub = filter_state_list_trans["currency_code"]
+                filter_state_list_trans_ = filter_state_list_trans_rub
+        return filter_state_list_trans_
     else:
-        return sort_r
+        filter_state_list_trans_ = filter_state_list_trans
+        return filter_state_list_trans_
 
 
-def str_sort():
+def str_sort(filter_state_list_trans_: dict) -> dict:
     sort_string: bool = False
     print("""Отфильтровать список транзакций по определенному слову 
 в описании? Да/Нет""")
