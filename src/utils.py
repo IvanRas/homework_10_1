@@ -46,7 +46,7 @@ def get_transactions_dictionary_excel() -> dict:
     """Принимает путь до Excel-файла и возвращает список словарей с данными о финансовых транзакциях."""
 
     auth_logger.info("Информация по счету")
-    reader = csv.reader(excel_data)
+    reader = csv.reader(pd.read_excel("transactions_excel.xlsx"))
 #    to_dict:  что это за вставка, и как и на что она влияет
     list_trans = reader.to_dict(orient="records")
     return list_trans
