@@ -1,7 +1,8 @@
 import logging
 import os
-from typing import List, Any
+import re
 
+from typing import List, Any
 from src.utils import get_transactions_dictionary, get_transactions_dictionary_excel, get_transactions_dictionary_csv
 
 logging.basicConfig(
@@ -53,22 +54,22 @@ def filter_funct(transactions_info: dict) -> list[Any] | dict:
     filters = str(input("""Введите статус, по которому необходимо выполнить фильтрацию.\n
         Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING""")).upper()
     filter_state_list_trans = []
-    for [state] in transactions_info:
-        if filters == "EXECUTED":
+    for i in transactions_info:
+        if filters and i["state"] == "EXECUTED":
             auth_logger.info("Фильтрация по статусу: EXECUTED")
-            filter_state_list_trans.append()  # создаем новый отфильтрованый список
+            filter_state_list_trans.append(i)  # создаем новый отфильтрованый список
             return filter_state_list_trans
-        elif filters == "CANCELED":
+        elif filters and i["state"] == "CANCELED":
             auth_logger.info("Фильтрация по статусу: CANCELED")
-            filter_state_list_trans.append()
+            filter_state_list_trans.append(i)
             return filter_state_list_trans
-        elif filters == "PENDING":
+        elif filters and i["state"] == "PENDING":
             auth_logger.info("Фильтрация по статусу: PENDING")
-            filter_state_list_trans.append()
+            filter_state_list_trans.append(i)
             return filter_state_list_trans
         else:
             auth_logger.info("Не выбран тип фильтрации")
-            return filter_funct()  # во всех других вариантах перезапуск функций
+            return filter_funct(transactions_info)  # во всех других вариантах перезапуск функций
 
 
 def funct_sort(filter_state_list_trans: dict) -> dict:
@@ -92,11 +93,10 @@ def rub_sort(filter_state_list_trans: dict) -> dict:
     s_rub = str(input("Выводить только рублевые тразакции? Да/Нет")).lower()
     filter_state_list_trans_ = []
     if s_rub == "да":
-        for [currency_code] in filter_state_list_trans:
-            if [currency_code] == "RUB":
-                filter_state_list_trans_rub = filter_state_list_trans["currency_code"]
-                filter_state_list_trans_ = filter_state_list_trans_rub
-        return filter_state_list_trans_
+        for i in filter_state_list_trans:
+            if i["currency_code"] == "RUB":
+                filter_state_list_trans_.append(i)
+                return filter_state_list_trans_
     else:
         filter_state_list_trans_ = filter_state_list_trans
         return filter_state_list_trans_
@@ -107,6 +107,9 @@ def str_sort(filter_state_list_trans_: dict) -> dict:
     s_string = str(input("""Отфильтровать список транзакций по определенному слову
 в описании? Да/Нет""")).lower()
     if s_string == "да":
+        commit = str(input()).lower()
+        pattern = re.compile(r'{commit}')
+
         return sort_string
     else:
-        return sort_string
+        return filter_state_list_trans_
