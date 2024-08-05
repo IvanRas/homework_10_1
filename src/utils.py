@@ -52,7 +52,7 @@ def get_transactions_dictionary_excel() -> dict:
 def get_transactions_dictionary_csv() -> dict | Any:
     """Принимает путь до CSV-файла и возвращает список словарей с данными о финансовых транзакциях."""
     auth_logger.info("Информация по счету")
-    reader = csv.reader(wine_reviews)
+    reader = pd.read_csv("../data/transactions.csv")
 #    to_dict:  что это за вставка, и как и на что она влияет
     list_trans = reader.to_dict(orient="records")
     return list_trans

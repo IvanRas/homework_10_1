@@ -24,24 +24,32 @@ def main():
     2. Получить информацию о транзакциях из CSV-файла\n
     3. Получить информацию о транзакциях из XLSX-файла\n
     ''')
-    i = int(input())
-    if i == 1:
-        auth_logger.info("Для обработки выбран JSON-файл.")
-        transactions_info = get_transactions_dictionary(os.path.join("data", "operations.json)"))
-
-    elif i == 2:
-        auth_logger.info("Для обработки выбран CSV-файла.")
-        # transactions_info = get_transactions_dictionary_csv(os.path.join("data", "transactions.csv"))
-        transactions_info = get_transactions_dictionary_csv()
-    elif i == 3:
-        auth_logger.info("Для обработки выбран XLSX-файла.")
-        # transactions_info = get_transactions_dictionary_excel(os.path.join("data", "transactions_excel.xlsx"))
-        transactions_info = get_transactions_dictionary_excel()
+    user_input = input()
+    if user_input.isdigit():
+        number = int(user_input)
+        if number == 1:
+            auth_logger.info("Для обработки выбран JSON-файл.")
+            transactions_info = get_transactions_dictionary(os.path.join("data", "operations.json)"))
+        elif number == 2:
+            auth_logger.info("Для обработки выбран CSV-файла.")
+            # transactions_info = get_transactions_dictionary_csv(os.path.join("data", "transactions.csv"))
+            transactions_info = get_transactions_dictionary_csv()
+        elif number == 3:
+            auth_logger.info("Для обработки выбран XLSX-файла.")
+            # transactions_info = get_transactions_dictionary_excel(os.path.join("data", "transactions_excel.xlsx"))
+            transactions_info = get_transactions_dictionary_excel()
+        else:
+            auth_logger.info("Не выбран тип файла")
+            print("Вы ввели не число.")
     else:
         auth_logger.info("Не выбран тип файла")
+        print("Вы ввели не число.")
     filter_state_list = filter_funct(transactions_info)
+    print(filter_state_list)
     sort_list = funct_sort(filter_state_list)
+    print(sort_list)
     rub_list = rub_sort(sort_list)
+    print(rub_list)
     result = str_sort(rub_list)
     print(result)
 
@@ -96,7 +104,7 @@ def rub_sort(filter_state_list_trans: dict) -> list[Any] | dict:
         for i in filter_state_list_trans:
             if i.get("currency_code") == "RUB" or (i.get("operationAmount") and i["operationAmount"]["currency"]["code"] == "RUB"):
                 filter_state_list_trans_.append(i)
-        return filter_state_list_trans_
+            return filter_state_list_trans_
     else:
         filter_state_list_trans_ = filter_state_list_trans
         return filter_state_list_trans_
