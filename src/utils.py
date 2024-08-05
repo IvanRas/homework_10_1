@@ -39,20 +39,14 @@ def get_transactions_dictionary(path: str) -> dict | Any:
         # говорит о возрощений пипа list
 
 
-excel_data = pd.read_excel("transactions_excel.xlsx")
-
-
 def get_transactions_dictionary_excel() -> dict:
     """Принимает путь до Excel-файла и возвращает список словарей с данными о финансовых транзакциях."""
 
     auth_logger.info("Информация по счету")
-    reader = csv.reader(pd.read_excel("transactions_excel.xlsx"))
+    reader = pd.read_excel("../data/transactions_excel.xlsx")
 #    to_dict:  что это за вставка, и как и на что она влияет
     list_trans = reader.to_dict(orient="records")
     return list_trans
-
-
-wine_reviews = pd.read_csv("transactions.csv")
 
 
 def get_transactions_dictionary_csv() -> dict | Any:
@@ -62,3 +56,8 @@ def get_transactions_dictionary_csv() -> dict | Any:
 #    to_dict:  что это за вставка, и как и на что она влияет
     list_trans = reader.to_dict(orient="records")
     return list_trans
+
+
+if __name__ == "__main__":
+    wine_reviews = pd.read_csv("transactions.csv")
+    excel_data = pd.read_excel("transactions_excel.xlsx")
