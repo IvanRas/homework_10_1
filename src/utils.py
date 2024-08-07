@@ -1,4 +1,3 @@
-import csv
 import json
 import logging
 from typing import Any
@@ -24,6 +23,7 @@ def get_transactions_dictionary(path: str) -> dict | Any:
     try:
         # with open(path, "r", "operations.json", encoding='utf-8') as operations:
         with open(path, "r", encoding="utf-8") as operations:
+
             try:
                 auth_logger.info("Информация по счету")
                 list_trans = json.load(operations)
@@ -44,7 +44,7 @@ def get_transactions_dictionary_excel() -> dict:
 
     auth_logger.info("Информация по счету")
     reader = pd.read_excel("../data/transactions_excel.xlsx")
-#    to_dict:  что это за вставка, и как и на что она влияет
+    #    to_dict:  что это за вставка, и как и на что она влияет
     list_trans = reader.to_dict(orient="records")
     return list_trans
 
@@ -53,7 +53,7 @@ def get_transactions_dictionary_csv() -> dict | Any:
     """Принимает путь до CSV-файла и возвращает список словарей с данными о финансовых транзакциях."""
     auth_logger.info("Информация по счету")
     reader = pd.read_csv("../data/transactions.csv")
-#    to_dict:  что это за вставка, и как и на что она влияет
+    #    to_dict:  что это за вставка, и как и на что она влияет
     list_trans = reader.to_dict(orient="records")
     return list_trans
 
