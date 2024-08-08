@@ -72,9 +72,9 @@ def main():
     filter_by_word = input("Программа: Отфильтровать список транзакций по определенному слову в описании? Да/Нет ")
     if filter_by_word.lower() == "да":
         word = input("Введите слово: ")
-    #     filtered_transactions = filter_by_state(filtered_transactions, word)
+        #     filtered_transactions = filter_by_state(filtered_transactions, word)
 
-# def str_sort(filtered_transactions: list[dict], search_string: str) -> list[dict]:
+        # def str_sort(filtered_transactions: list[dict], search_string: str) -> list[dict]:
         found_operations = []
         for operation in filtered_transactions:
             if re.search(word, operation.get("description", "")):

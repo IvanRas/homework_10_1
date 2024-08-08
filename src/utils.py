@@ -1,6 +1,7 @@
 import json
 import logging
-from typing import Any, List
+from typing import Any
+import csv
 
 import pandas as pd
 
@@ -39,22 +40,67 @@ def get_transactions_dictionary(path: str) -> dict | Any:
         # говорит о возрощений пипа list
 
 
-def get_transactions_dictionary_excel() -> list[dict]:
-    """Принимает путь до Excel-файла и возвращает список словарей с данными о финансовых транзакциях."""
-    auth_logger.info("Информация по счету")
-    reader = pd.read_excel("../data/transactions_excel.xlsx")
-    #    to_dict:  что это за вставка, и как и на что она влияет
-    list_trans = reader.to_dict(orient="records")
-    return list_trans
+def get_transactions_dictionary_csv(csv_path: str) -> list[dict]:
+    """Aункция пути до CSV-файла и возвращает список словарей с данными о финансовых транзакциях"""
+
+    transaction_list = []
+    try:
+        with open(csv_path, encoding="utf-8") as csv_file:
+            reader = csv.reader(csv_file, delimiter=";")
+            next(reader)
+            for row in reader:
+                if row:
+                    id_, state, date, amount, currency_name, currency_code, from_, to, description = row
+                    transaction_list.append(
+                        {
+                            "id": str(id_),
+                            "state": state,
+                            "date": date,
+                            "operationAmount": {
+                                "amount": str(amount),
+                                "currency": {"name": currency_name, "code": currency_code},
+                            },
+                            "description": description,
+                            "from": from_,
+                            "to": to,
+                        }
+                    )
+    except Exception:
+        return []
+    return transaction_list
 
 
-def get_transactions_dictionary_csv() -> dict | Any:
-    """Принимает путь до CSV-файла и возвращает список словарей с данными о финансовых транзакциях."""
-    auth_logger.info("Информация по счету")
-    reader = pd.read_csv("../data/transactions.csv")
-    #    to_dict:  что это за вставка, и как и на что она влияет
-    list_trans = reader.to_dict(orient="records")
-    return list_trans
+def get_transactions_dictionary_excel(excel_path: str) -> list[dict]:
+    """FAункция пути до EXCEL-файла и возвращает список словарей с данными о финансовых транзакциях"""
+
+    transaction_list = []
+    try:
+        excel_data = pd.read_excel(excel_path)
+        len_, b = excel_data.shape
+        for i in range(len_):
+            if excel_data["id"][i]:
+                transaction_list.append(
+                    {
+                        "id": str(excel_data["id"][i]),
+                        "state": excel_data["state"][i],
+                        "date": excel_data["date"][i],
+                        "operationAmount": {
+                            "amount": str(excel_data["amount"][i]),
+                            "currency": {
+                                "name": excel_data["currency_name"][i],
+                                "code": excel_data["currency_code"][i],
+                            },
+                        },
+                        "description": excel_data["description"][i],
+                        "from": excel_data["from"][i],
+                        "to": excel_data["to"][i],
+                    }
+                )
+            else:
+                continue
+    except Exception:
+        return []
+    return transaction_list
 
 
 if __name__ == "__main__":
