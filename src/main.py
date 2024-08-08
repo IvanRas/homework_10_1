@@ -1,4 +1,7 @@
 import os
+import re
+
+import pandas as pd
 
 from src.generators import filter_by_currency
 from src.masks import get_mask_account, get_mask_card_number
@@ -37,14 +40,14 @@ def main():
         else:
             print("Такого пункта в меню нет, попробуйте еще раз.")
 
-    state_list = ["executed", "canceled", "pending"]
+    state_list = ["EXECUTED", "CANCELED", "PENDING"]
 
     while True:
         state = input(
             """Введите статус, по которому необходимо выполнить фильтрацию.
 Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING.
 """
-        ).lower()
+        ).upper()
 
         if state not in state_list:
             print(f'Статус операции "{state}" недоступен.')
@@ -69,7 +72,14 @@ def main():
     filter_by_word = input("Программа: Отфильтровать список транзакций по определенному слову в описании? Да/Нет ")
     if filter_by_word.lower() == "да":
         word = input("Введите слово: ")
-        filtered_transactions = filter_by_state(filtered_transactions, word)
+    #     filtered_transactions = filter_by_state(filtered_transactions, word)
+
+# def str_sort(filtered_transactions: list[dict], search_string: str) -> list[dict]:
+        found_operations = []
+        for operation in filtered_transactions:
+            if re.search(word, operation.get("description", "")):
+                found_operations.append(operation)
+                filtered_transactions = filter_by_rub(filtered_transactions, word)
 
     print("Распечатываю итоговый список транзакций...")
     if len(filtered_transactions) == 0:
@@ -95,3 +105,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+filter_by_state

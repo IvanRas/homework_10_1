@@ -1,6 +1,6 @@
 import json
 import logging
-from typing import Any
+from typing import Any, List
 
 import pandas as pd
 
@@ -39,9 +39,8 @@ def get_transactions_dictionary(path: str) -> dict | Any:
         # говорит о возрощений пипа list
 
 
-def get_transactions_dictionary_excel() -> dict:
+def get_transactions_dictionary_excel() -> list[dict]:
     """Принимает путь до Excel-файла и возвращает список словарей с данными о финансовых транзакциях."""
-
     auth_logger.info("Информация по счету")
     reader = pd.read_excel("../data/transactions_excel.xlsx")
     #    to_dict:  что это за вставка, и как и на что она влияет
