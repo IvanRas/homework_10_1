@@ -7,6 +7,7 @@ from src.generators import filter_by_currency
 from src.masks import get_mask_account, get_mask_card_number
 from src.processing import filter_by_state, sort_by_date
 from src.utils import get_transactions_dictionary, get_transactions_dictionary_csv, get_transactions_dictionary_excel
+from src.filter_by_word import str_sort
 
 PATH_TO_FILE_JSON = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "operations.json")
 PATH_TO_FILE_CSV = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "transactions.csv")
@@ -72,14 +73,11 @@ def main():
     filter_by_word = input("Программа: Отфильтровать список транзакций по определенному слову в описании? Да/Нет ")
     if filter_by_word.lower() == "да":
         word = input("Введите слово: ")
-        #     filtered_transactions = filter_by_state(filtered_transactions, word)
-
-        # def str_sort(filtered_transactions: list[dict], search_string: str) -> list[dict]:
-        found_operations = []
-        for operation in filtered_transactions:
-            if re.search(word, operation.get("description", "")):
-                found_operations.append(operation)
-                filtered_transactions = filter_by_rub(filtered_transactions, word)
+        filtered_transactions = str_sort(filtered_transactions, word)
+    #     for operation in filtered_transactions:
+    #         if re.search(word, operation.get("description", "")):
+    #             found_operations.append(operation)
+    #             filtered_transactions = filter_by_rub(filtered_transactions, word)
 
     print("Распечатываю итоговый список транзакций...")
     if len(filtered_transactions) == 0:
@@ -105,4 +103,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-filter_by_state
