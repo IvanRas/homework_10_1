@@ -15,5 +15,7 @@ def log(filename: None = None) -> Callable[[Any], Callable[[tuple[Any, ...], dic
             else:
                 print(log_message)
             return result
+
         return wrapper
+
     return decorator
